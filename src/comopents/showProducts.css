@@ -1,0 +1,19 @@
+.gallary {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    overflow: scroll;
+}
+
+.gallary-container {
+    display: block;
+    border: cyan;
+    height: 790px;
+    width: 100%;
+    overflow-y: scroll;
+    margin: auto;
+    /* margin-top: 10px; */
+    border-radius: 1%;
+    box-shadow: 1px 1px 1px 1px;
+    z-index: -1;
+    /* background-color: #2196F399; */
+}

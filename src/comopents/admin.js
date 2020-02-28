@@ -1,14 +1,19 @@
+/* eslint-disable react/style-prop-object */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-useless-constructor */
 import React from "react";
 import "./admin.css";
 import {
-  BroswserRouter as Router,
+  BrowserRouter as Router,
   Route,
   Link,
-  Redirect
+  Redirect,
+  Switch
 } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Axios from "axios";
+import AddProduct from "./addProduct";
+import ShowProducts from "./showProducts";
 
 class Admin extends React.Component {
   constructor(props) {
@@ -29,18 +34,6 @@ class Admin extends React.Component {
       adminData: {},
       error: {}
     };
-
-    Axios.get("http://192.168.1.125:3000/v1/admin/test", {
-      headers: {
-        Authorization: `Basic ${store.token}`
-      }
-    })
-      .then(response => {
-        this.setState({ adminData: response });
-      })
-      .catch(err => {
-        this.setState({ error: err });
-      });
   }
 
   render() {
@@ -49,8 +42,58 @@ class Admin extends React.Component {
     }
     return (
       <div>
-        <h1>Welcome to wineshop admin page</h1>
-        <button><Link to="/logout">Logout</Link></button>
+        <div className="w3-card w3-blue">
+          <h1>Welcome to wineshop admin page </h1>
+        </div>
+        <button
+          className="w3-btn w3-round w3-blue"
+          style={{
+            position: "fixed",
+            top: "10px",
+            right: "10px",
+            height: "53px",
+            widht: "95px"
+          }}
+        >
+          <Link style={{ textDecoration: "none" }} to="/logout">
+            Logout
+          </Link>
+        </button>
+          <Link
+          className="w3-btn w3-round w3-blue"
+            style={{
+              textDecoration: "none",
+              position: "fixed",
+              bottom: "10px",
+              left: "10px",
+              height: "39px",
+              widht: "95px",
+              zIndex: "1"
+            }}
+            to="/admin/add-product"
+          >Add Product</Link>
+
+        <Link
+          className="w3-btn w3-round w3-blue"
+          style={{
+            textDecoration: "none",
+            position: "fixed",
+            bottom: "10px",
+            right: "10px",
+            height: "39px",
+            widht: "95px",
+            zIndex: "1"
+          }}
+          to="/admin/"
+        >See all Product</Link>
+        <Switch>
+          <Route path="/admin/" exact>
+            <ShowProducts />
+          </Route>
+          <Route path="/admin/add-product">
+            <AddProduct />
+          </Route>
+        </Switch>
       </div>
     );
   }

@@ -1,0 +1,9 @@
+.success {
+    display: block;
+    position: absolute;
+    left: 104px;
+    top: 91px;
+    font-size: 34px;
+    color: green;
+    font-weight: bold;
+}

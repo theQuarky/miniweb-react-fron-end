@@ -39,7 +39,7 @@ class Login extends React.Component {
 
   formSubmit(event) {
     event.preventDefault();
-    Axios.post("http://192.168.1.125:3000/v1/admin/login", this.state)
+    Axios.post("http://localhost:3000/v1/admin/login", this.state)
       .then(response => {
         if (response.data.message) {
           this.setState({ error: response.data.message });
